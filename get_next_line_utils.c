@@ -6,13 +6,13 @@
 /*   By: mabbas <mabbas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 12:37:02 by mabbas            #+#    #+#             */
-/*   Updated: 2022/07/05 03:48:40 by mabbas           ###   ########.fr       */
+/*   Updated: 2022/07/05 04:51:52 by mabbas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-size_t	ft_strlen(const char *s)
+size_t	ft_strlen(const char *str)
 {
 	size_t	i;
 
@@ -92,24 +92,33 @@ char	*ft_strjoin(char const *string1, char const *string2)
 }
 
 /**
- * @brief This Function is modification of
- *        ft_strrchr which is now looking for 
- *        the first occurence of char 'c' in
- * 		  the string. 
+ * @brief Creates a substring to copy it 
+ * 		  to the buffer 
  */
-
-char	*ft_strchr(const char *s, int c)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	int		len;
+	char	*newstr;
+	size_t	max_len;
+	size_t	str_len;
+	size_t	sub_len;
+	int		i;
 
-	len = ft_strlen(s);
-	while (len >= 0)
-	{
-		if (s[len] == (char) c)
-		{
-			return ((char *)(s + len));
-		}
-		len++;
-	}
-	return (0);
+	sub_len = 0;
+	if (s == NULL)
+		return (NULL);
+	if ((int) start >= ft_strlen(s))
+		return (ft_strdup(""));
+	max_len = str_len - start;
+	if (max_len < len)
+		sub_len = max_len;
+	else if (max_len >= len)
+		sub_len = len;
+	newstr = malloc(sub_len + 1);
+	if (newstr == NULL)
+		return (0);
+	i = 0;
+	while (i < max_len)
+		newstr[i++] = s[start++];
+	newstr[sub_len] = '\0';
+	return (newstr);
 }
