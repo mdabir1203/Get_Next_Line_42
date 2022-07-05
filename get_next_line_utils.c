@@ -6,7 +6,7 @@
 /*   By: mabbas <mabbas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 12:37:02 by mabbas            #+#    #+#             */
-/*   Updated: 2022/07/05 04:51:52 by mabbas           ###   ########.fr       */
+/*   Updated: 2022/07/05 06:13:09 by mabbas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,27 +98,22 @@ char	*ft_strjoin(char const *string1, char const *string2)
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char	*newstr;
-	size_t	max_len;
-	size_t	str_len;
-	size_t	sub_len;
-	int		i;
+	size_t	i;
+	size_t	j;
 
-	sub_len = 0;
 	if (s == NULL)
 		return (NULL);
-	if ((int) start >= ft_strlen(s))
-		return (ft_strdup(""));
-	max_len = str_len - start;
-	if (max_len < len)
-		sub_len = max_len;
-	else if (max_len >= len)
-		sub_len = len;
-	newstr = malloc(sub_len + 1);
-	if (newstr == NULL)
-		return (0);
+	newstr = (char *)malloc(sizeof(*s) * (len + 1));
+	if (!newstr)
+		return (NULL);
 	i = 0;
-	while (i < max_len)
-		newstr[i++] = s[start++];
-	newstr[sub_len] = '\0';
+	j = 0;
+	while (s[i])
+	{
+		if (i >= start && j < len)
+			newstr[j++] = s[i];
+	i++;
+	}
+	newstr[j] = '\0';
 	return (newstr);
 }
