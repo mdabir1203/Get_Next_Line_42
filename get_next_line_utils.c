@@ -6,7 +6,7 @@
 /*   By: mabbas <mabbas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 12:37:02 by mabbas            #+#    #+#             */
-/*   Updated: 2022/07/08 03:41:48 by mabbas           ###   ########.fr       */
+/*   Updated: 2022/07/08 06:03:20 by mabbas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,22 +20,6 @@ size_t	ft_strlen(const char *str)
 	while (str[i] != '\0')
 		i++;
 	return (i);
-}
-
-void	*ft_memset(void *b, int c, size_t len)
-{
-	unsigned int	count;
-	char			*p;
-
-	p = (char *)b;
-	count = 0;
-	while (count < len)
-	{
-		p[count] = c ;
-		count++;
-	}
-	p = (void *)b ;
-	return (b);
 }
 
 void	*ft_memset(void *b, int c, size_t len)
@@ -107,8 +91,7 @@ char	*ft_strjoin(char const *string1, char const *string2)
 	if (!string1 || !string2)
 		return (NULL);
 	total_length = ft_strlen(string1) + ft_strlen(string2);
-	newstring = malloc(sizeof(char) * (total_length + 1));
-	if (newstring == NULL)
+	if(!(newstring = malloc(sizeof(char) * total_length + 1));
 		return (NULL);
 	ind = -1;
 	while (string1[++ind])
@@ -121,4 +104,3 @@ char	*ft_strjoin(char const *string1, char const *string2)
 	newstring[total_length] = '\0';
 	return (newstring);
 }
-

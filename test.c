@@ -1,4 +1,4 @@
-int main(void)
+/* int main(void)
 {
     FILE fd;
 
@@ -19,10 +19,18 @@ int main(void)
     exit(EXIT_SUCCESS);
 
 }
+ */
 
+#include <stddef.h>
+#include <unistd.h>
+int main (void)
+{
+    char *bt;
 
+    bt = read(1,"sdasdqwe\n",5);
 
-
+    return (bt);
+}
 
 // char **test;
 // int  i;
