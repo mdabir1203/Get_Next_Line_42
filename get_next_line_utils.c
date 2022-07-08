@@ -6,7 +6,7 @@
 /*   By: mabbas <mabbas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 12:37:02 by mabbas            #+#    #+#             */
-/*   Updated: 2022/07/05 06:13:09 by mabbas           ###   ########.fr       */
+/*   Updated: 2022/07/08 03:41:48 by mabbas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,58 @@ size_t	ft_strlen(const char *str)
 	while (str[i] != '\0')
 		i++;
 	return (i);
+}
+
+void	*ft_memset(void *b, int c, size_t len)
+{
+	unsigned int	count;
+	char			*p;
+
+	p = (char *)b;
+	count = 0;
+	while (count < len)
+	{
+		p[count] = c ;
+		count++;
+	}
+	p = (void *)b ;
+	return (b);
+}
+
+void	*ft_memset(void *b, int c, size_t len)
+{
+	unsigned int	count;
+	char			*p;
+
+	p = (char *)b;
+	count = 0;
+	while (count < len)
+	{
+		p[count] = c ;
+		count++;
+	}
+	p = (void *)b ;
+	return (b);
+}
+
+/** This is to malloc with 0 bytes. This helps 
+ *  in minimizing null terminated string byte errors
+ * 
+ */
+
+void	*ft_calloc(size_t nelm, size_t elmsize)
+{
+	void	*inptr;
+	size_t	totalsize;
+
+	inptr = NULL;
+	totalsize = nelm * elmsize;
+	if (nelm && elmsize != (totalsize / nelm))
+		return (inptr);
+	inptr = malloc(totalsize);
+	if (inptr)
+		ft_memset (inptr, '\0', totalsize);
+	return (inptr);
 }
 
 /**
@@ -37,27 +89,6 @@ char	*ft_strchr(const char *s, int c)
 	++s;
 	}
 	return ((char *)s);
-}
-
-/**
- * @brief THis is to duplicate the string
- */
-char	*ft_strdup(char *str)
-{
-	char	*auxstr;
-	size_t	size;
-
-	size = ft_strlen(str) + 1;
-	auxstr = malloc(sizeof(char) * size);
-	if (str == NULL || !auxstr)
-		return (NULL);
-	while (str[size])
-	{
-		auxstr[size] = str[size];
-		size++;
-	}
-	auxstr[size] = '\0';
-	return (auxstr);
 }
 
 /**
@@ -91,29 +122,3 @@ char	*ft_strjoin(char const *string1, char const *string2)
 	return (newstring);
 }
 
-/**
- * @brief Creates a substring to copy it 
- * 		  to the buffer 
- */
-char	*ft_substr(char const *s, unsigned int start, size_t len)
-{
-	char	*newstr;
-	size_t	i;
-	size_t	j;
-
-	if (s == NULL)
-		return (NULL);
-	newstr = (char *)malloc(sizeof(*s) * (len + 1));
-	if (!newstr)
-		return (NULL);
-	i = 0;
-	j = 0;
-	while (s[i])
-	{
-		if (i >= start && j < len)
-			newstr[j++] = s[i];
-	i++;
-	}
-	newstr[j] = '\0';
-	return (newstr);
-}

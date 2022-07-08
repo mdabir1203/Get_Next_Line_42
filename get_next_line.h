@@ -6,7 +6,7 @@
 /*   By: mabbas <mabbas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 12:49:33 by mabbas            #+#    #+#             */
-/*   Updated: 2022/07/05 04:21:09 by mabbas           ###   ########.fr       */
+/*   Updated: 2022/07/05 06:27:57 by mabbas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 size_t	ft_strlen(const char *s);
 char	*ft_strchr(const char *s, int c);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
-char	*ft_strdup(const char *str);
+char	*ft_strdup(char *str);
 char	*ft_strjoin(char const *s1, char const *s2);
 /**
  * Main Function to use 

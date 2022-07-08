@@ -6,7 +6,7 @@
 /*   By: mabbas <mabbas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 12:35:10 by mabbas            #+#    #+#             */
-/*   Updated: 2022/07/05 04:20:55 by mabbas           ###   ########.fr       */
+/*   Updated: 2022/07/08 03:05:43 by mabbas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,13 +85,13 @@ char	*get_next_line(int fd)
 	inp_str = 0;
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	inp_str[0] = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	if (!inp_str[0])
+	if (!(inp_str[0] = malloc( sizeof(char) * (BUFFER_SIZE + 1)))
 		return (NULL);
 	buff_store = read_fd(fd, buff_store, &inp_str[0]);
 	if (!buff_store || !buff_store[0])
 		return (NULL);
-	inp_str[1] = line_chk(buff_store);
+	inp_str[1] = *line_chk(buff_store);
 	buff_store = update_buff_store(buff_store);
 	return (&inp_str[1]);
 }
+
