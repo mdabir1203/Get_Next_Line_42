@@ -6,7 +6,7 @@
 /*   By: mabbas <mabbas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 12:37:02 by mabbas            #+#    #+#             */
-/*   Updated: 2022/07/08 06:03:20 by mabbas           ###   ########.fr       */
+/*   Updated: 2022/07/09 21:45:28 by mabbas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ char	*ft_strjoin(char const *string1, char const *string2)
 	if (!string1 || !string2)
 		return (NULL);
 	total_length = ft_strlen(string1) + ft_strlen(string2);
-	if(!(newstring = malloc(sizeof(char) * total_length + 1));
+	if (!(newstring = malloc(sizeof(char) * total_length + 1)))
 		return (NULL);
 	ind = -1;
 	while (string1[++ind])
@@ -103,4 +103,23 @@ char	*ft_strjoin(char const *string1, char const *string2)
 		newstring[ind++] = string2[ind2];
 	newstring[total_length] = '\0';
 	return (newstring);
+}
+
+void	*ft_memcpy(void *dst, const void *src, size_t n)
+{
+	size_t		count;
+	char		*csrc;
+	char		*cdest;
+
+	csrc  =	(char *)src;
+	cdest =	(char *)dst;
+	count = -1;
+	if ((src != NULL) || (dst != NULL))
+	{	
+		while (++count < n)
+		{
+			cdest[count] = csrc[count];
+		}
+	}
+	return (cdest);
 }
