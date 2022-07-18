@@ -6,7 +6,7 @@
 /*   By: mabbas <mabbas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 12:37:02 by mabbas            #+#    #+#             */
-/*   Updated: 2022/07/09 21:45:28 by mabbas           ###   ########.fr       */
+/*   Updated: 2022/07/18 17:28:59 by mabbas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,34 +75,21 @@ char	*ft_strchr(const char *s, int c)
 	return ((char *)s);
 }
 
-/**
- * @brief This function is used to join the strings
- * 		  Apparently used here to join the buffer of
- * 		  strings read.
- */
-char	*ft_strjoin(char const *string1, char const *string2)
+size_t	ft_strlcpy(char *dst, const char *src, size_t dest_len)
 {
-	char	*newstring;
-	size_t	total_length;
-	int		ind;
-	int		ind2;
+	size_t	srclen;
 
-	total_length = 0;
-	if (!string1 || !string2)
-		return (NULL);
-	total_length = ft_strlen(string1) + ft_strlen(string2);
-	if (!(newstring = malloc(sizeof(char) * total_length + 1)))
-		return (NULL);
-	ind = -1;
-	while (string1[++ind])
+	srclen = ft_strlen(src);
+	if (srclen + 1 < dest_len)
 	{
-		newstring[ind] = string1[ind];
+		ft_memcpy(dst, src, srclen + 1);
 	}
-	ind2 = -1;
-	while (string2[++ind2])
-		newstring[ind++] = string2[ind2];
-	newstring[total_length] = '\0';
-	return (newstring);
+	else if (dest_len != 0)
+	{
+		ft_memcpy(dst, src, dest_len -1);
+		dst[dest_len -1] = '\0';
+	}
+	return (srclen);
 }
 
 void	*ft_memcpy(void *dst, const void *src, size_t n)
@@ -122,4 +109,19 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 		}
 	}
 	return (cdest);
+}
+
+void	ft_strcat(char *dst, const char *src)
+{
+	size_t	i;
+	size_t	dst_len;
+
+	dst_len = ft_strlen(dst);
+	i = 0;
+	while (src[i] != 0)
+	{
+		dst[dst_len + i] = src[i];
+		i++;
+	}
+	dst[dst_len + i] = 0;
 }
