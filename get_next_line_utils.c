@@ -6,7 +6,7 @@
 /*   By: mabbas <mabbas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 12:37:02 by mabbas            #+#    #+#             */
-/*   Updated: 2022/07/18 17:28:59 by mabbas           ###   ########.fr       */
+/*   Updated: 2022/07/20 03:09:45 by mabbas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,20 @@ void	*ft_memset(void *b, int c, size_t len)
 	}
 	p = (void *)b ;
 	return (b);
+}
+
+void	ft_bzero_null(void *s, size_t n)
+{
+	size_t	i;
+
+	if (!s)
+		return ;
+	i = 0;
+	while (i < n)
+	{
+		*(unsigned char *)(s + i) = '\0';
+		i++;
+	}
 }
 
 /** This is to malloc with 0 bytes. This helps 

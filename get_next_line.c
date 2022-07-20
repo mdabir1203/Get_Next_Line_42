@@ -5,101 +5,79 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mabbas <mabbas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/28 12:35:10 by mabbas            #+#    #+#             */
-/*   Updated: 2022/07/18 18:17:42 by mabbas           ###   ########.fr       */
+/*   Created: 2022/07/20 01:26:28 by mabbas            #+#    #+#             */
+/*   Updated: 2022/07/20 15:26:47 by mabbas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 #include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-/**
- * @brief Here the i variable is maintaining the position
- *        of ending of the buffer.Also +1 is the null bytes.
- *        After each read we create a temp variable to store
- *        each succession of line read.
- *
- * @param inp_buff
- * @return char*
- */
 
-int read_fd(int fd, char *buff_store, char **line)
+int	find_line(char **ret_line, char buff_store[], int *rd_bytes)
 {
-    char *temp_buff;
-    char *found_line;
-    int i;
-    int count;
+	char	*linepos;
+	int     i;
 
-    i = 0;
-    found_line = ft_strchr(buff_store, '\n');
-    count = 0;
-    if (found_line)
-    {
-        temp_buff = buff_store;
-        *line = malloc(sizeof(char *) * (found_line - temp_buff));
-        ft_memcpy(*line, temp_buff, found_line - temp_buff + 1);
-        while (temp_buff[i])
-        {
-            buff_store[i] = *(found_line + i + 1);
-            if (*(found_line + i + 1))
-                buff_store[i] = *(found_line + i + 1);
-            else
-                buff_store[i] = '\0';
-            i++; // Go to the next char
-        }
-        return (1);
-    }
-    else
-    {
-        temp_buff = ft_calloc(sizeof(char), BUFFER_SIZE + 1);
-        count = read(fd, temp_buff, BUFFER_SIZE);
-        // /Empty file reached*/
-        if (count == 0 && !buff_store[0])
-            {
-                free(temp_buff);
-                return (0);
-            }
-        // /Empty file reached*/
-        else if (count == 0 && buff_store[0])
-        {
-            // END of file && reinitialize the memory
-            *line = malloc(sizeof(char *) * ft_strlen(buff_store));
-            ft_memcpy(*line,buff_store,ft_strlen(buff_store));
-            ft_memset(buff_store,'\0',ft_strlen(buff_store));
-            free(temp_buff);
-            return (-1);
-        }
-        else
-            {
-                ft_strcat(buff_store, temp_buff);
-                free(temp_buff);
-                return (read_fd(fd, buff_store, line));
-            }
-    }
-    
+	i = 0;
+	linepos = ft_strchr(buff_store, '\n');
+	if (linepos)
+	{
+		*ret_line = ft_calloc(sizeof(char), (linepos - buff_store) + 2);
+		ft_memcpy(*ret_line, buff_store, linepos - buff_store + 1);
+        //include '\n' && NuLL byte
+		while (*(linepos + i + 1) != '\0')
+		{			
+			buff_store[i] = *(linepos + i + 1);
+			i++;
+			// next part after strchr iteration
+		}
+		ft_bzero_null(&buff_store[i], MAX_LINE  - i);
+		return (1);
+	}
+	if(*rd_bytes == 0)
+	{
+		*ret_line = ft_calloc(sizeof(char), MAX_LINE + 1);
+		ft_memcpy(*ret_line, buff_store, MAX_LINE);
+		*rd_bytes = -1;
+	}
+	return (0);
 }
 
-char *get_next_line(int fd)
+char	*get_next_line(int fd)
 {
-    static char buff_store[BUFFER_SIZE];
-    char *temp;
-    char *line; // return value
-    int rd_flag;
-
-    temp = 0;
-    rd_flag = 0;
-    if(!buff_store[0])
-        ft_memset(buff_store,'\0',BUFFER_SIZE);
-    if (fd < 0 || BUFFER_SIZE <= 0 || fd > 10240)
-        return (NULL);
-    rd_flag = read_fd(fd, buff_store, &line);
-    if (rd_flag == 1 || rd_flag == -1)
-        return (line);
-    else
-        return (NULL);
+	static char buff_store[MAX_LINE];
+	char		*temp_storage;
+	char		*ret_line;
+	int			rd_bytes;
+	
+	if(!buff_store[0])
+		ft_bzero_null (buff_store,MAX_LINE);
+	 // EOF Reached // Error Handling
+	if (fd < 0 || fd >= MAX_FD || BUFFER_SIZE <= 0)
+		// (buff_store[0] == 0 && rd_bytes == 0))
+		return (NULL);
+	temp_storage = ft_calloc(sizeof(char), BUFFER_SIZE + 1);
+	rd_bytes = read(fd, temp_storage, BUFFER_SIZE);
+	 if (rd_bytes < 0  || (rd_bytes <= 0 && buff_store[0] == '\0'))
+	{
+		free(temp_storage);
+        ft_bzero_null (buff_store, MAX_LINE);
+		return (NULL);
+	}
+	ft_strcat(buff_store, temp_storage);
+	free(temp_storage);
+	// & is used to modify inside func
+	if (find_line (&ret_line, buff_store, &rd_bytes) == 1)
+		return (ret_line);
+	if (rd_bytes == -1)
+	{
+		ft_bzero_null(buff_store, MAX_LINE);
+		return (ret_line);
+	}
+	// END of line reached 
+	return (get_next_line(fd));
+		// If  end of line not reached we call func to read again
 }
-
 // int main()
 // {
 // // Buffer to store data
@@ -112,8 +90,7 @@ char *get_next_line(int fd)
 //   printf("%s",get_next_line(stream));
 //   printf("%s",get_next_line(stream));
 //   printf("%s",get_next_line(stream));
-    
-
+//   printf("%s",get_next_line(stream));
 
 
 
