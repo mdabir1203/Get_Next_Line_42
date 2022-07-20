@@ -6,15 +6,14 @@
 /*   By: mabbas <mabbas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 12:37:02 by mabbas            #+#    #+#             */
-/*   Updated: 2022/07/20 20:53:17 by mabbas           ###   ########.fr       */
+/*   Updated: 2022/07/20 20:59:10 by mabbas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int	ft_strlen(char *str)
+size_t	ft_strlen(const char *str)
 {
-	char	str;
 	int		i;
 
 	i = 0;
@@ -60,7 +59,7 @@ void	*ft_calloc(size_t nelm, size_t elmsize)
 }
 
 /**
- * @brief This is to locate the 'newline' character in the string
+ *  This is to locate the 'newline' character in the string
  */
 char	*ft_strchr(const char *s, int c)
 {

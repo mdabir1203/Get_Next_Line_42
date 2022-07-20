@@ -6,7 +6,7 @@
 /*   By: mabbas <mabbas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 01:26:28 by mabbas            #+#    #+#             */
-/*   Updated: 2022/07/20 20:53:39 by mabbas           ###   ########.fr       */
+/*   Updated: 2022/07/20 20:58:46 by mabbas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	find_line(char **ret_line, char buff_store[], int *rd_bytes)
 		ft_memcpy(*ret_line, buff_store, linepos - buff_store + 1);
 		while (*(linepos + i + 1) != '\0')
 		{			
-			buff_store[i] = *(linepos + i + 1);
+			*(buff_store + i) = *(linepos + i + 1);
 			i++;
 		}
 		ft_bzero_null(&buff_store[i], MAX_LINE - i);
@@ -116,18 +116,20 @@ char	*get_next_line(int fd)
 	return (get_next_line(fd));
 }
 
-// int main()
-// {
-// // Buffer to store data
-//   int   stream;
-//   stream = open("a.txt", O_RDWR);
+#include <stdio.h>
 
-//   printf("%s",get_next_line(stream));
-//   printf("%s",get_next_line(stream));
-//   printf("%s",get_next_line(stream));
-//   printf("%s",get_next_line(stream));
-//   printf("%s",get_next_line(stream));
-//   printf("%s",get_next_line(stream));
-//   printf("%s",get_next_line(stream));
-//   return(0);
-// }
+int main()
+{
+// Buffer to store data
+  int   stream;
+  stream = 0; //open("a.txt", O_RDWR);
+
+  printf("%s",get_next_line(stream));
+  printf("%s",get_next_line(stream));
+  printf("%s",get_next_line(stream));
+  printf("%s",get_next_line(stream));
+  printf("%s",get_next_line(stream));
+  printf("%s",get_next_line(stream));
+  printf("%s",get_next_line(stream));
+  return(0);
+}

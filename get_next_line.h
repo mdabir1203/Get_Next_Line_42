@@ -6,7 +6,7 @@
 /*   By: mabbas <mabbas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 12:49:33 by mabbas            #+#    #+#             */
-/*   Updated: 2022/07/20 20:53:56 by mabbas           ###   ########.fr       */
+/*   Updated: 2022/07/20 20:55:30 by mabbas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,13 @@ char	*ft_strjoin(char const *s1, char const *s2);
 void	*ft_calloc(size_t nelm, size_t elmsize);
 void	*ft_memset(void *b, int c, size_t len);
 char	*line_chk(char *temp_buff);
-int	    read_fd(int fd, char *buff_store, char **line);
+int		read_fd(int fd, char *buff_store, char **line);
 void	*ft_memcpy(void *dst, const void *src, size_t n);
 
 void	ft_bzero_null(void *s, size_t n);
 /**
  * Main Function to use 
  */
-int	find_line(char **ret_line, char buff_store[], int *rd_bytes);
+int		find_line(char **ret_line, char buff_store[], int *rd_bytes);
 char	*get_next_line(int fd);
 #endif
