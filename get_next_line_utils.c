@@ -6,37 +6,11 @@
 /*   By: mabbas <mabbas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 12:37:02 by mabbas            #+#    #+#             */
-/*   Updated: 2022/07/20 03:09:45 by mabbas           ###   ########.fr       */
+/*   Updated: 2022/07/20 16:34:38 by mabbas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
-size_t	ft_strlen(const char *str)
-{
-	size_t	i;
-
-	i = 0;
-	while (str[i] != '\0')
-		i++;
-	return (i);
-}
-
-void	*ft_memset(void *b, int c, size_t len)
-{
-	unsigned int	count;
-	char			*p;
-
-	p = (char *)b;
-	count = 0;
-	while (count < len)
-	{
-		p[count] = c ;
-		count++;
-	}
-	p = (void *)b ;
-	return (b);
-}
 
 void	ft_bzero_null(void *s, size_t n)
 {
@@ -68,7 +42,7 @@ void	*ft_calloc(size_t nelm, size_t elmsize)
 		return (inptr);
 	inptr = malloc(totalsize);
 	if (inptr)
-		ft_memset (inptr, '\0', totalsize);
+		ft_bzero_null (inptr, totalsize);
 	return (inptr);
 }
 
@@ -89,31 +63,14 @@ char	*ft_strchr(const char *s, int c)
 	return ((char *)s);
 }
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t dest_len)
-{
-	size_t	srclen;
-
-	srclen = ft_strlen(src);
-	if (srclen + 1 < dest_len)
-	{
-		ft_memcpy(dst, src, srclen + 1);
-	}
-	else if (dest_len != 0)
-	{
-		ft_memcpy(dst, src, dest_len -1);
-		dst[dest_len -1] = '\0';
-	}
-	return (srclen);
-}
-
 void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
 	size_t		count;
 	char		*csrc;
 	char		*cdest;
 
-	csrc  =	(char *)src;
-	cdest =	(char *)dst;
+	csrc = (char *)src;
+	cdest = (char *)dst;
 	count = -1;
 	if ((src != NULL) || (dst != NULL))
 	{	
