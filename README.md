@@ -29,24 +29,25 @@ It is a similar function related to original c function called getline() -- >>
  
   Source: Tutorialpoint
  ![image](https://user-images.githubusercontent.com/66947064/180117081-77f5d9d3-b455-404d-afb2-549a65c28e44.png)
- 
-    Source: 42 Student
- Ques: If allocating a big memory for static variable is good or not ? 
-  ![image](https://user-images.githubusercontent.com/66947064/180116309-e9e7ace1-1696-4b45-b774-93ee8a061102.png)
 
-Extras I learned:
+ ``Ques: If allocating a big memory for static variable is good or not ? ``
+  ![image](https://user-images.githubusercontent.com/66947064/180116309-e9e7ace1-1696-4b45-b774-93ee8a061102.png)
+ #Source: 42 Student
+
+## Extras I learned:
 #Checking Memory Leaks : Allocated memories must be freed !! 
        MAC: 
        Run this first:
-             export MallocStackLogging=1
+             `export MallocStackLogging=1`
        Then : 
-             $(NAME).out
+                `$(NAME).out`
        After that: 
-             leaks --atExit --list -- ./$(NAME).out $(ARGUMENTS -- if you have)
+               `leaks --atExit --list -- ./$(NAME).out $(ARGUMENTS -- if you have)`
        
-       Also run leaks --help for better understanding !! 
-      source: https://www.youtube.com/watch?v=bhhDRm926qA
-      Linux:
+   Also run `leaks --help` for better understanding !! 
+      
+      source: https://www.youtu`be.com/watch?v=bhhDRm926qA
+   Linux:
                Use valgrind !! Too many resources out there :xD  
 # Segfaults
          
