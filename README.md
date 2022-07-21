@@ -37,13 +37,11 @@ It is a similar function related to original c function called getline() -- >>
 ## Extras I learned:
 #Checking Memory Leaks : Allocated memories must be freed !! 
  # MAC: 
-       Run:  `export MallocStackLogging=1`
-       Then: 
-                `$(NAME).out`
-       After that: 
-               `leaks --atExit --list -- ./$(NAME).out $(ARGUMENTS -- if you have)`
+   Run:  `export MallocStackLogging=1`
+   Then: `$(NAME).out`
+   After that:`leaks --atExit --list -- ./$(NAME).out $(ARGUMENTS -- if you have)`
        
-   Also run `leaks --help` for better understanding !! 
+   Also run:  `leaks --help` for better understanding !! 
       
       source: https://www.youtu`be.com/watch?v=bhhDRm926qA
 # Linux:
