@@ -6,7 +6,7 @@ It is a similar function related to original c function called getline() -- >>
 1. You can read a string or a line through it in an input string
  
  Function Prototype:
- ```c char *get_next_line(int fd) ```
+ ` char *get_next_line(int fd) `
  
  Research Cheatsheets:
   Calloc vs Malloc 
@@ -36,10 +36,9 @@ It is a similar function related to original c function called getline() -- >>
 
 ## Extras I learned:
 #Checking Memory Leaks : Allocated memories must be freed !! 
-       MAC: 
-       Run this first:
-             `export MallocStackLogging=1`
-       Then : 
+ # MAC: 
+       Run:  `export MallocStackLogging=1`
+       Then: 
                 `$(NAME).out`
        After that: 
                `leaks --atExit --list -- ./$(NAME).out $(ARGUMENTS -- if you have)`
@@ -47,7 +46,7 @@ It is a similar function related to original c function called getline() -- >>
    Also run `leaks --help` for better understanding !! 
       
       source: https://www.youtu`be.com/watch?v=bhhDRm926qA
-   Linux:
+# Linux:
                Use valgrind !! Too many resources out there :xD  
 # Segfaults
          
