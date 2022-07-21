@@ -39,13 +39,14 @@ It is a similar function related to original c function called getline() -- >>
  #Source: 42 Student
 
 ## Extras I learned:
-#Checking Memory Leaks : Allocated memories must be freed !! 
- # MAC: 
+**Checking Memory Leaks :** Allocated memories must be freed !! 
+           
+ **MAC:** 
    Run:  `export MallocStackLogging=1`
    Then: `$(NAME).out`
    After that:`leaks --atExit --list -- ./$(NAME).out $(ARGUMENTS -- if you have)`
        
-   Also run:  `leaks --help` for better understanding !! 
+   Also run:  `leaks --help` for understanding the flags !! 
       
       source: https://www.youtu`be.com/watch?v=bhhDRm926qA
 # Linux:
@@ -55,6 +56,26 @@ It is a similar function related to original c function called getline() -- >>
 # Use of a Debugger
 
 
-Mac: 
+VS_CODE: For VS_CODE most important is launch.json file !! You have to configure if you run it for the first time. also Remember to add 
+         your workspace folder to the same location as your project folder.
+         Template **launch.json** for lldb. In case of C/C++ gdb deburgger its gdb in the type  :
+         
+         {
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug",
+            "program": "${workspaceFolder}/(your program name..eg: a.out",
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        }
+    ]
+}
 
-      
+CODEBLOCKS: 
+     
