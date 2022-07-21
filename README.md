@@ -1,4 +1,6 @@
 # Get_Next_Line_42
+## N:B: If you have any suggestions how to optimize and making it more cleaner . Please let me know :) 
+
 This project is about programming a function that returns a line read from a file descriptor
 
 It is a similar function related to original c function called getline() -- >> 
