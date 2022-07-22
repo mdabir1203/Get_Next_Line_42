@@ -6,7 +6,7 @@
 /*   By: mabbas <mabbas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 01:26:28 by mabbas            #+#    #+#             */
-/*   Updated: 2022/07/20 20:58:46 by mabbas           ###   ########.fr       */
+/*   Updated: 2022/07/22 10:33:57 by mabbas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,6 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 	return (cdest);
 }
 
-
-
-
-
-
 /**
  * Here the difficulty was using calloc and getting the right memory 
  * size with memcpy. We have to think about the not only the  '\n'
@@ -52,17 +47,14 @@ int	find_line(char **ret_line, char buff_store[], int *rd_bytes)
 	char	*linepos;
 	int		i;
 
-	i = 0;
+	i = -1;
 	linepos = ft_strchr(buff_store, '\n');
 	if (linepos)
 	{
 		*ret_line = ft_calloc(sizeof(char), (linepos - buff_store) + 2);
 		ft_memcpy(*ret_line, buff_store, linepos - buff_store + 1);
-		while (*(linepos + i + 1) != '\0')
-		{			
-			*(buff_store + i) = *(linepos + i + 1);
-			i++;
-		}
+		while (linepos[++i + 1] != '\0')
+			buff_store[i] = linepos[i + 1];
 		ft_bzero_null(&buff_store[i], MAX_LINE - i);
 		return (1);
 	}
@@ -95,7 +87,7 @@ char	*get_next_line(int fd)
 	char		*ret_line;
 	int			rd_bytes;
 
-	if (fd < 0 || fd >= MAX_FD || BUFFER_SIZE <= 0)
+	if (fd < 0 || fd > MAX_FD || BUFFER_SIZE <= 0 || BUFFER_SIZE > MAX_LINE)
 		return (NULL);
 	temp_storage = ft_calloc(sizeof(char), BUFFER_SIZE + 1);
 	rd_bytes = read(fd, temp_storage, BUFFER_SIZE);
@@ -116,20 +108,26 @@ char	*get_next_line(int fd)
 	return (get_next_line(fd));
 }
 
-#include <stdio.h>
+// #include <stdio.h>
 
-int main()
-{
-// Buffer to store data
-  int   stream;
-  stream = 0; //open("a.txt", O_RDWR);
+// int main(void)
+// {
+//   int   fd;
+//   int   fd1;
+//	 int   fd2;
+//   char  *line;
+//   char  *line1;
+//	 char  *line2;
+//    fd = open("a.txt", O_RDWR);
+//   //fd1 = open("b.bin", O_RDWR);
+//   //fd2 = 0;
 
-  printf("%s",get_next_line(stream));
-  printf("%s",get_next_line(stream));
-  printf("%s",get_next_line(stream));
-  printf("%s",get_next_line(stream));
-  printf("%s",get_next_line(stream));
-  printf("%s",get_next_line(stream));
-  printf("%s",get_next_line(stream));
-  return(0);
-}
+// 		 line = get_next_line(fd);
+// 		line1 = get_next_line(fd1);
+// 		line2 = get_next_line(fd2);
+// 		printf("%s", line);
+// 		printf("%s", line1);
+// 		printf("%s", line2);
+
+// 	return (0);
+// }
