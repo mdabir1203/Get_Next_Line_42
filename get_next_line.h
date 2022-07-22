@@ -6,7 +6,7 @@
 /*   By: mabbas <mabbas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 12:49:33 by mabbas            #+#    #+#             */
-/*   Updated: 2022/07/22 05:29:51 by mabbas           ###   ########.fr       */
+/*   Updated: 2022/07/22 10:46:38 by mabbas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,8 @@
 size_t	ft_strlen(const char *s);
 char	*ft_strchr(const char *s, int c);
 void	ft_strcat(char *dst, const char *src);
-// size_t	ft_strlcpy(char *dst, const char *src, size_t dest_len);
-char	*ft_strdup(char *str);
-char	*ft_strjoin(char const *s1, char const *s2);
-void	*ft_calloc(size_t nelm, size_t elmsize);
-void	*ft_memset(void *b, int c, size_t len);
-char	*line_chk(char *temp_buff);
-int		read_fd(int fd, char *buff_store, char **line);
+void	*ft_calloc(size_t nelm, size_t elmsize);;
 void	*ft_memcpy(void *dst, const void *src, size_t n);
-
 void	ft_bzero_null(void *s, size_t n);
 /**
  * Main Function to use 
