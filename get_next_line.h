@@ -6,7 +6,7 @@
 /*   By: mabbas <mabbas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 12:49:33 by mabbas            #+#    #+#             */
-/*   Updated: 2022/07/22 10:46:38 by mabbas           ###   ########.fr       */
+/*   Updated: 2022/07/26 01:15:50 by mabbas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 # define GET_NEXT_LINE_H
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 42
+#  define BUFFER_SIZE 1
 # endif
 
-# define MAX_LINE 10100 // may vary depends on how much lines in text file
+# define MAX_LINE 24000000
 # define MAX_FD   10240 // For MAC // depends on PC Type (ulimit -n)
 /*
 	** Libraries for malloc,free,write,size_t
