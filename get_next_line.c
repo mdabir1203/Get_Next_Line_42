@@ -6,7 +6,7 @@
 /*   By: mabbas <mabbas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 01:26:28 by mabbas            #+#    #+#             */
-/*   Updated: 2022/07/26 01:29:47 by mabbas           ###   ########.fr       */
+/*   Updated: 2022/07/26 02:12:58 by mabbas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,15 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
  * size with memcpy. We have to think about the not only the  '\n'
  * but also the NULL terminator. Pointer and array notation at the 
  * same line might be confusing for you there is a subtle difference 
- * between that.
+ * between that. const char * is used for better practice in case of 
+ * string lateral since it won't be modified
+ * Source: https://learnxinyminutes.com/docs/c/
  *  
  */
 int	find_line(char **ret_line, char buff_store[], int *rd_bytes)
 {
-	char	*linepos;
-	int		i;
+	const char	*linepos;
+	int			i;
 
 	i = -1;
 	linepos = ft_strchr(buff_store, '\n');
@@ -68,6 +70,7 @@ int	find_line(char **ret_line, char buff_store[], int *rd_bytes)
 	}
 	return (0);
 }
+
 /**
  * This is the get next line function. Used one helper function to
  * to find the newline character and store it in the buffer.
@@ -80,6 +83,7 @@ int	find_line(char **ret_line, char buff_store[], int *rd_bytes)
  * line is in the input text. We can manipulate it according
  * to the input text lines.Any other suggestions optimizing 
  * please reach out.Also never assume array and pointer is the same.
+ * Arrays get "downgraded" to raw pointers when they are passed to functions 
  */
 
 char	*get_next_line(int fd)
