@@ -6,7 +6,7 @@
 /*   By: mabbas <mabbas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 12:37:02 by mabbas            #+#    #+#             */
-/*   Updated: 2022/07/29 20:12:00 by mabbas           ###   ########.fr       */
+/*   Updated: 2022/07/29 22:09:49 by mabbas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ char	*str_append(t_list **head, t_list *current, char **remains, int choice)
 		free(*remains);
 	}
 	ft_strlcpy(new + current->nw_len, \
-		&current->buffer[1 + current->offset - current->len], current->len + 1);
+	current->buffer[1 + current->offset - current->len], current->len + 1);
 	current->nw_len += current->len;
 	current->len = 1;
 	if (choice)
@@ -112,7 +112,7 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 	q = dst;
 	p = src;
 	ch = '\0';
-	while (ch = *(p++))
+	while (ch == *(p++))
 	{
 		if (bytes + 1 < size)
 				*q++ = ch;
