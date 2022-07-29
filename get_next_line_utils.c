@@ -6,7 +6,7 @@
 /*   By: mabbas <mabbas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 12:37:02 by mabbas            #+#    #+#             */
-/*   Updated: 2022/07/29 16:46:05 by mabbas           ###   ########.fr       */
+/*   Updated: 2022/07/29 20:12:00 by mabbas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,22 @@ void	*ft_calloc(size_t nelm, size_t elmsize)
 	if (inptr)
 		ft_memset (inptr, '\0', totalsize);
 	return (inptr);
+}
+
+void	*ft_memset(void *str, int c, size_t n)
+{
+	char	*ptr;
+	size_t	i;
+
+	ptr = (char *) str;
+	i = 0;
+	while (i < n)
+	{
+		ptr[i] = c;
+		i++;
+	}
+	str = (void *) ptr;
+	return (str);
 }
 
 /**
@@ -56,127 +72,53 @@ t_list	*new_node(int fd)
 	return (new);
 }
 
-/**
- * @brief This is to locate the 'newline' character from the input and put the 
- *        lines read each time to the list
- */
-int	find_node(t_list **head, t_list **current, int fd)
+char	*str_append(t_list **head, t_list *current, char **remains, int choice)
 {
-	t_list	*temp_buff;
+	char	*new;
 
-	if (!*head)
-	{
-		*head = new_node(fd);
-		if (!*head)
-			return (0);
-	}
-	temp_buff = *head;
-	// It creates a new node for a temporary buffer for each file descriptors.
-	while (temp_buff && (temp_buff)->fd != fd)
-	{
-		if (!(temp_buff)->next)
-		{
-			(temp_buff)->next = new_node(fd);
-			if (!(temp_buff)-> next)
-				return (0);
-		}
-		temp_buff = (temp_buff)->next;
-	}
-	*current = temp_buff;
-	return (1);
-}
-
-int	error_handle(t_list **head, t_list *current, char *str)
-{
-	t_list	*temp_buff;
-
-	if (str)
-		free (str);
-	temp_buff = *head;
-	if (temp_buff == current)
-	{
-		*head = temp_buff->next;
-		//free(current);
-		return (0);
-	}
-	while (temp_buff->next)
-	{
-		if (temp_buff->next == current)
-		{
-			temp_buff->next = current->next;
-			//free(current);
-			break;
-		}
-		temp_buff = temp_buff->next;
-	}
-	return (0);
-}
-
-char *str_append(t_list **head, t_list *current, char **remains, int reset_val)
-{
-	char *new;
-	
-	new = ft_calloc(current->new_len + current->len + 1);
+	new = ft_calloc(sizeof (char), current->nw_len + current->len + 1);
 	if (!new)
 	{
-		error_handle(head,current,*remains)
+		error_handle(head, current, *remains);
 		return (NULL);
 	}
-	if (*remain)
+	if (*remains)
 	{
-		ft_strlcpy(new, *remains, current->new_len + 1);
-		//free(*res);
+		ft_strlcpy(new, *remains, current->nw_len + 1);
+		free(*remains);
 	}
-	ft_strlcpy(new + current->new_len, \
-		&current->buffer[1 + current->offset - current->len, current->len + 1);
-
+	ft_strlcpy(new + current->nw_len, \
+		&current->buffer[1 + current->offset - current->len], current->len + 1);
 	current->nw_len += current->len;
 	current->len = 1;
-	
-	if (reset_val)
+	if (choice)
 	{
-		current->new_len = 0;
+		current->nw_len = 0;
 		current->offset++;
 		current->len = 1;
-	} 
+	}
 	*remains = new;
 	return (new);
 }					
 
-
-
-size_t	ft_strlcpy(char *dst, const char *src, size_t dest_len)
+size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 {
-	size_t	srclen;
+	size_t		bytes;
+	char		*q;
+	const char	*p;
+	char		ch;
 
-	srclen = ft_strlen(src);
-	if (srclen + 1 < dest_len)
+	bytes = 0;
+	q = dst;
+	p = src;
+	ch = '\0';
+	while (ch = *(p++))
 	{
-		ft_memcpy(dst, src, srclen + 1);
+		if (bytes + 1 < size)
+				*q++ = ch;
+		bytes++;
 	}
-	else if (dest_len != 0)
-	{
-		ft_memcpy(dst, src, dest_len -1);
-		dst[dest_len -1] = '\0';
-	}
-	return (srclen);
-}
-
-void	*ft_memcpy(void *dst, const void *src, size_t n)
-{
-	size_t		count;
-	char		*csrc;
-	char		*cdest;
-
-	csrc  =	(char *)src;
-	cdest =	(char *)dst;
-	count = -1;
-	if ((src != NULL) || (dst != NULL))
-	{	
-		while (++count < n)
-		{
-			cdest[count] = csrc[count];
-		}
-	}
-	return (cdest);
+	if (size)
+		*q = '\0';
+	return (bytes);
 }

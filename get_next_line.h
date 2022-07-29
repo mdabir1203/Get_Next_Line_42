@@ -6,7 +6,7 @@
 /*   By: mabbas <mabbas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 12:49:33 by mabbas            #+#    #+#             */
-/*   Updated: 2022/07/29 19:01:41 by mabbas           ###   ########.fr       */
+/*   Updated: 2022/07/29 19:46:03 by mabbas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,12 @@ typedef struct str_list
 size_t	ft_strlen(const char *s);
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
 t_list	*new_node(int fd);
-
-int		find_node(t_list **head, t_list *current, int fd);
-int		error_handle(t_list **head, t_list **current, char *str);
+void	*ft_memcpy(void *dst, const void *src, size_t n);
+int		find_node(t_list **head, t_list **current, int fd);
+int		error_handle(t_list **head, t_list *current, char *str);
 int		rd_size_buffer(t_list **head, t_list *cur, char *remains);
-char	*str_append(t_list **head, const char *src, size_t dstsize);
-
+char	*str_append(t_list **head, t_list *current, char **remains, int choice);
+void	*ft_memset(void *str, int c, size_t n);
 /**
  * Main Function to use 
  */
