@@ -6,7 +6,7 @@
 /*   By: mabbas <mabbas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 12:37:02 by mabbas            #+#    #+#             */
-/*   Updated: 2022/07/29 22:09:49 by mabbas           ###   ########.fr       */
+/*   Updated: 2022/07/30 09:03:36 by mabbas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ char	*str_append(t_list **head, t_list *current, char **remains, int choice)
 {
 	char	*new;
 
-	new = ft_calloc(sizeof (char), current->nw_len + current->len + 1);
+	new = ft_calloc(1, current->nw_len + current->len + 1);
 	if (!new)
 	{
 		error_handle(head, current, *remains);
@@ -85,10 +85,10 @@ char	*str_append(t_list **head, t_list *current, char **remains, int choice)
 	if (*remains)
 	{
 		ft_strlcpy(new, *remains, current->nw_len + 1);
-		free(*remains);
+		free(remains);
 	}
 	ft_strlcpy(new + current->nw_len, \
-	current->buffer[1 + current->offset - current->len], current->len + 1);
+	&current->buffer[1 + current->offset - current->len], current->len + 1);
 	current->nw_len += current->len;
 	current->len = 1;
 	if (choice)
@@ -103,22 +103,21 @@ char	*str_append(t_list **head, t_list *current, char **remains, int choice)
 
 size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 {
-	size_t		bytes;
-	char		*q;
-	const char	*p;
-	char		ch;
+	size_t	i;
+	size_t	j;
 
-	bytes = 0;
-	q = dst;
-	p = src;
-	ch = '\0';
-	while (ch == *(p++))
+	i = 0;
+	j = 0;
+
+	while (src[i] != '\0')
 	{
-		if (bytes + 1 < size)
-				*q++ = ch;
-		bytes++;
+		if (size && (i < (size - 1)))
+		{
+			dst[i] = src[i];
+			j++;
+		}
+	i++;
 	}
-	if (size)
-		*q = '\0';
-	return (bytes);
+	dst[j] = '\0';
+	return (i);
 }

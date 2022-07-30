@@ -6,7 +6,7 @@
 /*   By: mabbas <mabbas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 01:26:28 by mabbas            #+#    #+#             */
-/*   Updated: 2022/07/29 20:10:49 by mabbas           ###   ########.fr       */
+/*   Updated: 2022/07/30 09:13:56 by mabbas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ char	*get_next_line(int fd)
 			|| !find_node(&head, &current, fd))
 		return (NULL);
 	head = NULL;
+	remains = 0;
 	while (1)
 	{
 		if (current->offset == BUFFER_SIZE)
