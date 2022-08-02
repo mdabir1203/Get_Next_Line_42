@@ -6,7 +6,7 @@
 /*   By: mabbas <mabbas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 12:37:02 by mabbas            #+#    #+#             */
-/*   Updated: 2022/08/02 04:33:00 by mabbas           ###   ########.fr       */
+/*   Updated: 2022/08/02 04:40:27 by mabbas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,12 +74,13 @@ t_list	*new_node(int fd)
  * @brief This function is based on Adding new records below current records
  *        using pointers. So whatever I read with the read funciton it gets
  *        stored in the nodes and then I use this function to join those each
- *        read line with the new read line
+ *        read line with the new read line. When it comes to eof 
  * 
  * @param head 
  * @param current 
  * @param remains (Curre)
- * @param choice 
+ * @param choice -->> This is used to (0)find newline or end of file and 
+ *                    just (1)newline
  * @return char* 
  */
 char	*str_append(t_list **head, t_list *current, char **remains, int choice)

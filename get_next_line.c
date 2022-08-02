@@ -6,7 +6,7 @@
 /*   By: mabbas <mabbas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 01:26:28 by mabbas            #+#    #+#             */
-/*   Updated: 2022/08/02 04:28:23 by mabbas           ###   ########.fr       */
+/*   Updated: 2022/08/02 05:01:27 by mabbas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 /**
  * @brief This is to locate the 'newline' character from the input and put the 
  *        lines read each time to the list
+ *        It also checks for the specific file descriptor
  */
 int	find_node(t_list **head, t_list **current, int fd)
 {
