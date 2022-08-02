@@ -6,7 +6,7 @@
 /*   By: mabbas <mabbas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 12:37:02 by mabbas            #+#    #+#             */
-/*   Updated: 2022/07/30 09:19:05 by mabbas           ###   ########.fr       */
+/*   Updated: 2022/08/02 04:33:00 by mabbas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,33 +62,43 @@ t_list	*new_node(int fd)
 {
 	t_list	*new;
 
-	new = ft_calloc(7, sizeof(t_list));
+	new = ft_calloc(1, sizeof(t_list));
 	new->fd = fd;
 	new->rd_bytes = BUFFER_SIZE;
 	new->offset = BUFFER_SIZE;
-	new->nw_len = 0;
 	new->len = 1;
-	new->next = NULL;
 	return (new);
 }
 
+/**
+ * @brief This function is based on Adding new records below current records
+ *        using pointers. So whatever I read with the read funciton it gets
+ *        stored in the nodes and then I use this function to join those each
+ *        read line with the new read line
+ * 
+ * @param head 
+ * @param current 
+ * @param remains (Curre)
+ * @param choice 
+ * @return char* 
+ */
 char	*str_append(t_list **head, t_list *current, char **remains, int choice)
 {
-	char	*new;
+	char	*new_str;
 
-	new = ft_calloc(1, current->nw_len + current->len + 1);
-	if (!new)
+	new_str = ft_calloc(1, current->nw_len + current->len + 1);
+	if (!new_str)
 	{
 		error_handle(head, current, *remains);
 		return (NULL);
 	}
 	if (*remains)
 	{
-		ft_strlcpy(new, *remains, current->nw_len + 1);
+		ft_strlcpy(new_str, *remains, current->nw_len + 1);
 		free(*remains);
 	}
-	ft_strlcpy(new + current->nw_len, \
-	&current->buffer[1 + current->offset - current->len], current->len + 1);
+	ft_strlcpy(new_str + current->nw_len, \
+	&current->buffer[current->offset - current->len + 1], current->len + 1);
 	current->nw_len += current->len;
 	current->len = 1;
 	if (choice)
@@ -97,8 +107,8 @@ char	*str_append(t_list **head, t_list *current, char **remains, int choice)
 		current->offset++;
 		current->len = 1;
 	}
-	*remains = new;
-	return (new);
+	*remains = new_str;
+	return (new_str);
 }					
 
 size_t	ft_strlcpy(char *dst, const char *src, size_t size)
@@ -108,7 +118,6 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 
 	i = 0;
 	j = 0;
-
 	while (src[i] != '\0')
 	{
 		if (size && (i < (size - 1)))

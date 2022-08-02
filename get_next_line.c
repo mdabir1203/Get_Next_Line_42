@@ -6,7 +6,7 @@
 /*   By: mabbas <mabbas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 01:26:28 by mabbas            #+#    #+#             */
-/*   Updated: 2022/07/30 09:17:27 by mabbas           ###   ########.fr       */
+/*   Updated: 2022/08/02 04:28:23 by mabbas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ int	find_node(t_list **head, t_list **current, int fd)
 			return (0);
 	}
 	temp_buff = *head;
-	// It creates a new node for a temporary buffer for each file descriptors.
 	while (temp_buff && (temp_buff)->fd != fd)
 	{
 		if (!(temp_buff)->next)
@@ -89,54 +88,85 @@ int	error_handle(t_list **head, t_list *current, char *str)
 }
 
 /**
- * @brief Might have to typecast to void pointer 
- * 
- * @param fd 
+ * @brief  Get the next line object
+ *         I got 3 helper functions --> str_append,
+ *         error_handle, find_node(which means if my my stored character 
+ *         found or not)
  * @return char* 
  */
 
 char	*get_next_line(int fd)
 {
-	static t_list	*head;
+	static t_list	*head = NULL;
 	t_list			*current;
 	char			*remains;
 
 	if (fd < 0 || fd >= MAX_FD || BUFFER_SIZE <= 0 \
 			|| !find_node(&head, &current, fd))
 		return (NULL);
-	head = NULL;
 	remains = 0;
 	while (1)
 	{
-		if (current->offset == BUFFER_SIZE)
-		{
-			if (!rd_size_buffer(&head, current, remains))
-				return (NULL);
-		}
-		if (current->rd_bytes == 0 || current->offset == \
-									(size_t) current->rd_bytes)
-		{
-			if (!error_handle(&head, current, NULL))
-				return (remains);
-		}
+		if ((current->offset == BUFFER_SIZE) && \
+			(!rd_size_buffer (&head, current, remains)))
+			return (NULL);
+		if ((current->rd_bytes == 0 || current->offset == \
+		(size_t) current->rd_bytes) && (!error_handle(&head, current, NULL)))
+			return (remains);
 		if (current->buffer[current->offset] == '\n')
 			return (str_append(&head, current, &remains, 1));
-		if (current->offset == (size_t) current->rd_bytes - 1)
-		{
-			if (!str_append(&head, current, &remains, 0))
-				return (NULL);
-		}
+		if (current->offset == (size_t) current->rd_bytes - 1 \
+				&& !str_append(&head, current, &remains, 0))
+			return (NULL);
 		current->offset++;
 		current->len++;
 	}
 }
 
-int main()
-{
-// Buffer to store data
-  int   stream;
-  stream = 0; //open("a.txt", O_RDWR);
+// int main()
+// {
+// // Buffer to store data
+//   int   stream;
+//   stream = 0; //open("a.txt", O_RDWR);
 
-  printf("%s",get_next_line(stream));
-  return(0);
-}
+//   printf("%s",get_next_line(stream));
+//   return(0);
+// }
+
+// int main()
+// {
+// 	int fd;
+// 	fd = open("a.txt", O_RDONLY);
+// 	char *str;
+// 	str = get_next_line(fd);
+// 	while (str)
+// 	{
+// 		printf("%s", str);
+// 		free(str);
+// 		str = get_next_line(fd);
+// 	}
+// 	free(str);
+// 	return (0);
+// }
+
+// #include <time.h>
+// #include<stdio.h>
+// #include<fcntl.h>
+
+// int main(void)
+// {
+// 	int fd;
+// 	// clock_t start_clk = clock();
+// 	fd = open("a.txt", O_RDONLY);
+// 	char *str;
+// 	str = get_next_line(fd);
+// 	while (str)
+// 	{
+// 		printf("%s", str);
+// 		free(str);
+// 		str = get_next_line(fd);
+// 	}
+// 	free(str);
+// 	// printf("Processor time used by program: %Lg sec.\n", ((long double)(clock() - start_clk) / CLOCKS_PER_SEC));
+// 	return (0);
+// }
