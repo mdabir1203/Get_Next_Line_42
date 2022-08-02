@@ -6,7 +6,7 @@
 /*   By: mabbas <mabbas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 01:26:28 by mabbas            #+#    #+#             */
-/*   Updated: 2022/08/02 05:01:27 by mabbas           ###   ########.fr       */
+/*   Updated: 2022/08/02 10:17:43 by mabbas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 #include <stdio.h>
 
 /**
- * @brief This is to locate the 'newline' character from the input and put the 
+ * @brief This is to traverse and locate
+ *        the 'newline' character from the input and put the 
  *        lines read each time to the list
  *        It also checks for the specific file descriptor
  */
@@ -34,8 +35,7 @@ int	find_node(t_list **head, t_list **current, int fd)
 		if (!(temp_buff)->next)
 		{
 			(temp_buff)->next = new_node(fd);
-			if (!(temp_buff)-> next)
-				return (0);
+			return (0);
 		}
 		temp_buff = (temp_buff)->next;
 	}
@@ -92,7 +92,14 @@ int	error_handle(t_list **head, t_list *current, char *str)
  * @brief  Get the next line object
  *         I got 3 helper functions --> str_append,
  *         error_handle, find_node(which means if my my stored character 
- *         found or not)
+ *         found or not) The whole data structure I used is intrusive linked
+ *        list which means list node contains next pointer to the next list node,
+ *        but no data pointer. The list is embedded in the
+ *        linked object itself.
+ * 		  N.B>Arrays where you can only modify the value at a position & Linked 
+ *        Lists you can also modify the next pointer in addition to the value.
+ *        ref: **( means storing sentences in a list)
+ *        https://www.data-structures-in-practice.com/intrusive-linked-lists/
  * @return char* 
  */
 
@@ -168,6 +175,7 @@ char	*get_next_line(int fd)
 // 		str = get_next_line(fd);
 // 	}
 // 	free(str);
-// 	// printf("Processor time used by program: %Lg sec.\n", ((long double)(clock() - start_clk) / CLOCKS_PER_SEC));
+//  printf("Processor time: %Lg sec.\n",
+//	((long double)(clock() - start_clk) / CLOCKS_PER_SEC));
 // 	return (0);
 // }
