@@ -6,12 +6,11 @@
 /*   By: mabbas <mabbas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 01:26:28 by mabbas            #+#    #+#             */
-/*   Updated: 2022/08/02 10:17:43 by mabbas           ###   ########.fr       */
+/*   Updated: 2022/08/03 12:20:14 by mabbas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <stdio.h>
 
 /**
  * @brief This is to traverse and locate
@@ -89,7 +88,7 @@ int	error_handle(t_list **head, t_list *current, char *str)
 }
 
 /**
- * @brief  Get the next line object
+ * @brief  Get the next line object   
  *         I got 3 helper functions --> str_append,
  *         error_handle, find_node(which means if my my stored character 
  *         found or not) The whole data structure I used is intrusive linked
@@ -131,11 +130,12 @@ char	*get_next_line(int fd)
 	}
 }
 
+// #include <fcntl.h>
 // int main()
 // {
 // // Buffer to store data
 //   int   stream;
-//   stream = 0; //open("a.txt", O_RDWR);
+//   stream = open("b.txt", O_RDONLY);
 
 //   printf("%s",get_next_line(stream));
 //   return(0);
@@ -164,7 +164,7 @@ char	*get_next_line(int fd)
 // int main(void)
 // {
 // 	int fd;
-// 	// clock_t start_clk = clock();
+// 	clock_t start_clk = clock();
 // 	fd = open("a.txt", O_RDONLY);
 // 	char *str;
 // 	str = get_next_line(fd);
@@ -175,7 +175,7 @@ char	*get_next_line(int fd)
 // 		str = get_next_line(fd);
 // 	}
 // 	free(str);
-//  printf("Processor time: %Lg sec.\n",
-//	((long double)(clock() - start_clk) / CLOCKS_PER_SEC));
+//  printf("\n\nProcessor time: %Lg sec.\n",
+// 	((long double)(clock() - start_clk) / CLOCKS_PER_SEC));
 // 	return (0);
 // }
