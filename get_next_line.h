@@ -6,7 +6,7 @@
 /*   By: mabbas <mabbas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 12:49:33 by mabbas            #+#    #+#             */
-/*   Updated: 2022/08/03 12:41:14 by mabbas           ###   ########.fr       */
+/*   Updated: 2022/08/06 12:05:49 by mabbas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # endif
 
 # define MAX_FD   10240 // For MAC // depends on PC Type (ulimit -n)
+# define RELOOP	  1
 /*
 	** Libraries for malloc,free,write,size_t // khy2714
  */

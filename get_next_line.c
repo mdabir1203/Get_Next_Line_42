@@ -6,7 +6,7 @@
 /*   By: mabbas <mabbas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 01:26:28 by mabbas            #+#    #+#             */
-/*   Updated: 2022/08/03 12:20:14 by mabbas           ###   ########.fr       */
+/*   Updated: 2022/08/06 12:04:49 by mabbas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ char	*get_next_line(int fd)
 			|| !find_node(&head, &current, fd))
 		return (NULL);
 	remains = 0;
-	while (1)
+	while (RELOOP)
 	{
 		if ((current->offset == BUFFER_SIZE) && \
 			(!rd_size_buffer (&head, current, remains)))
