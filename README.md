@@ -14,7 +14,7 @@ I used a different implementation idea with Intrusive Linked List. Although it i
 
 <img width="770" alt="image" src="https://user-images.githubusercontent.com/66947064/183244206-088c95b7-cccd-4488-ac0b-54adceb879b1.png">
 
-## Why I chose the hard way or what's the benefit doing this compared to the usual array and joining string approach:
+## Advantages of Array Approach in this case :
 
 <img width="734" alt="image" src="https://user-images.githubusercontent.com/66947064/183244646-b5e47b3f-01c0-4cea-9ad6-37642b9e6f7f.png">
 
