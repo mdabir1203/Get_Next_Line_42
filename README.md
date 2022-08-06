@@ -25,6 +25,9 @@ Things I learned while doing this :
 
 1. Debugging ( Use lldb or usual gdb) 
     Resource Link: A great resource from a fellow 42 Student from another campus(this gem was found in the slack 42 Channel. Its a gem of resources and         peer learning. Use it wisely : 
-    Link: ** https://sebastienwae.github.io/debugging-42/ **
+    Link: **https://sebastienwae.github.io/debugging-42/ **
 
---- >>
+2. Intutive sense about Memory Allocation (still learning) - Malloc or Calloc -->> 
+     https://stackoverflow.com/questions/1538420/difference-between-malloc-and-calloc
+
+3. 
