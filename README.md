@@ -23,20 +23,19 @@ Why I chose the hard way or what's the benefit doing this compared to the usual 
 
 Things I learned while doing this : 
 
-1. Debugging ( Use lldb or usual gdb) 
+- Debugging ( Use lldb or usual gdb) 
     Resource Link: A great resource from a fellow 42 Student from another campus(this gem was found in the slack 42 Channel. Its a gem of resources and         peer learning. Use it wisely :
     
     Link: **https://sebastienwae.github.io/debugging-42/ **
 
-2. Intutive sense about Memory Allocation (still learning) - Malloc or Calloc -->> 
+- Intutive sense about Memory Allocation (still learning) - Malloc or Calloc -->> 
      https://stackoverflow.com/questions/1538420/difference-between-malloc-and-calloc
 
-3. Static Variables and Allocating large memory to it .. :xD (You get Timeout --> Don't be arrogant like me :xD)
+- Static Variables and Allocating large memory to it .. :xD (You get Timeout --> Don't be arrogant like me :xD)
  
 **A Reasonable Answer by a fellow 42 Peer Ali : * *Why allocating large memory in the stack with static variable not worth it.* *
 
  If you are allocating a big chunk of memory as a static variable inside a function, that memory will be allocated to your software until you exit from it.  It is completely valid to do so if you are actively using that memory, like get_next_line. But if you are not using the memory you allocated, then your software will misuse the resources. I know that Mac will recognises this misuse and simply swap your memory usage to the hard drive, which causes your software to slow down. I assume that Linux and windows should have the same mechanism in place, but you have to ask others (someone with administration experience) to be sure. 
    
 
----- >> Experiment 
 
