@@ -27,7 +27,7 @@ I used a different implementation idea with Intrusive Linked List. Although it i
 - **Debugging ( Use lldb or usual gdb)**
     Resource Link: A great resource from a fellow 42 Student from another campus(this gem was found in the slack 42 Channel. Its a gem of resources and         peer learning. Use it wisely :
     
-   ` Link: https://sebastienwae.github.io/debugging-42/`
+   [Debug me link](https://sebastienwae.github.io/debugging-42/) `
 
 - **Intutive sense about Memory Allocation** (still learning) - Malloc or Calloc -->> 
   `   https://stackoverflow.com/questions/1538420/difference-between-malloc-and-calloc `
