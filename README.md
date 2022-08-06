@@ -14,14 +14,14 @@ I used a different implementation idea with Intrusive Linked List. Although it i
 
 <img width="770" alt="image" src="https://user-images.githubusercontent.com/66947064/183244206-088c95b7-cccd-4488-ac0b-54adceb879b1.png">
 
-Why I chose the hard way or what's the benefit doing this compared to the usual array and joining string approach:
+## Why I chose the hard way or what's the benefit doing this compared to the usual array and joining string approach:
 
 <img width="734" alt="image" src="https://user-images.githubusercontent.com/66947064/183244646-b5e47b3f-01c0-4cea-9ad6-37642b9e6f7f.png">
 
  For more detailed idea.. Look into this: ` https://www.data-structures-in-practice.com/intrusive-linked-lists/ 
 
 
-## Things/tools/resources I used while doing this : 
+##Things/tools/resources I used while doing this : 
 
 - **Debugging ( Use lldb or usual gdb)**
     Resource Link: A great resource from a fellow 42 Student from another campus(this gem was found in the slack 42 Channel. Its a gem of resources and         peer learning. Use it wisely :
