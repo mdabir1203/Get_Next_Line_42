@@ -2,7 +2,7 @@
 This project is about programming a function that returns a line read from a file descriptor
 
 
-A Good Guide regarding the concept is given by @Raspurrin Life gets easier:xD!![42Guides](https://github.com/Raspurrin/42Guides) I would suggest everyone to look into it and understand it( Copying it without understanding -- you will just doom a good resource) 
+A Good Guide regarding the concept is given by @Raspurrin Life gets easier:xD!![42Guides](https://github.com/Raspurrin/42Guides) 
 
 I used a different implementation idea with Intrusive Linked List. Although it is not required but it helped me learn how to implement linked list.
 
