@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mabbas <mabbas@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mabbas <mabbas@students.42wolfsburg.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 01:26:28 by mabbas            #+#    #+#             */
-/*   Updated: 2022/08/06 12:04:49 by mabbas           ###   ########.fr       */
+/*   Updated: 2022/12/19 00:59:15 by mabbas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@
  *        lines read each time to the list
  *        It also checks for the specific file descriptor
  */
-int	find_node(t_list **head, t_list **current, int fd)
+int	find_node(t_line **head, t_line **current, int fd)
 {
-	t_list	*temp_buff;
+	t_line	*temp_buff;
 
 	if (!*head)
 	{
@@ -51,7 +51,7 @@ int	find_node(t_list **head, t_list **current, int fd)
  * @param remain 
  * @return int 
  */
-int	rd_size_buffer(t_list **head, t_list *current, char *remains)
+int	rd_size_buffer(t_line **head, t_line *current, char *remains)
 {
 	current->rd_bytes = read(current->fd, current->buffer, BUFFER_SIZE);
 	if (current->rd_bytes < 0)
@@ -61,9 +61,9 @@ int	rd_size_buffer(t_list **head, t_list *current, char *remains)
 	return (1);
 }
 
-int	error_handle(t_list **head, t_list *current, char *str)
+int	error_handle(t_line **head, t_line *current, char *str)
 {
-	t_list	*temp_buff;
+	t_line	*temp_buff;
 
 	if (str)
 		free (str);
@@ -104,8 +104,8 @@ int	error_handle(t_list **head, t_list *current, char *str)
 
 char	*get_next_line(int fd)
 {
-	static t_list	*head = NULL;
-	t_list			*current;
+	static t_line	*head = NULL;
+	t_line			*current;
 	char			*remains;
 
 	if (fd < 0 || fd >= MAX_FD || BUFFER_SIZE <= 0 \

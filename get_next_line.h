@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mabbas <mabbas@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mabbas <mabbas@students.42wolfsburg.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 12:49:33 by mabbas            #+#    #+#             */
-/*   Updated: 2022/08/06 12:05:49 by mabbas           ###   ########.fr       */
+/*   Updated: 2022/12/19 01:06:33 by mabbas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,16 +39,16 @@ typedef struct str_list
 	size_t			nw_len;
 	size_t			len;
 	struct str_list	*next;
-}	t_list;
+}	t_line;
 
-size_t	ft_strlen(const char *s);
+// size_t	ft_strlen2(const char *s);
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
-t_list	*new_node(int fd);
+t_line	*new_node(int fd);
 void	*ft_memcpy(void *dst, const void *src, size_t n);
-int		find_node(t_list **head, t_list **current, int fd);
-int		error_handle(t_list **head, t_list *current, char *str);
-int		rd_size_buffer(t_list **head, t_list *cur, char *remains);
-char	*str_append(t_list **head, t_list *current, char **remains, int choice);
+int		find_node(t_line **head, t_line **current, int fd);
+int		error_handle(t_line **head, t_line *current, char *str);
+int		rd_size_buffer(t_line **head, t_line *cur, char *remains);
+char	*str_append(t_line **head, t_line *current, char **remains, int choice);
 void	*ft_memset(void *str, int c, size_t n);
 /**
  * Main Function to use 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mabbas <mabbas@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mabbas <mabbas@students.42wolfsburg.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 12:37:02 by mabbas            #+#    #+#             */
-/*   Updated: 2022/08/02 10:25:50 by mabbas           ###   ########.fr       */
+/*   Updated: 2022/12/19 00:59:48 by mabbas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,11 @@ void	*ft_memset(void *str, int c, size_t n)
  *        between the length of read and unread lines.
  
  */
-t_list	*new_node(int fd)
+t_line	*new_node(int fd)
 {
-	t_list	*new;
+	t_line	*new;
 
-	new = ft_calloc(1, sizeof(t_list));
+	new = ft_calloc(1, sizeof(t_line));
 	new->fd = fd;
 	new->rd_bytes = BUFFER_SIZE;
 	new->offset = BUFFER_SIZE;
@@ -83,7 +83,7 @@ t_list	*new_node(int fd)
  *                    just (1)newline
  * @return char* 
  */
-char	*str_append(t_list **head, t_list *current, char **remains, int choice)
+char	*str_append(t_line **head, t_line *current, char **remains, int choice)
 {
 	char	*new_str;
 
