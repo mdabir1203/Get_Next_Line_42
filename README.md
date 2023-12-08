@@ -1,47 +1,37 @@
-# Get_Next_Line_42
-This project is about programming a function that returns a line read from a file descriptor
+# Project Overview: Get_Next_Line_42
 
+This project involves the development of a function designed to retrieve a line from a file descriptor.
 
-A Good Guide regarding the concept is given by @Raspurrin Life gets easier:xD!![42Guides](https://github.com/Raspurrin/42Guides/blob/main/get_next_line/get_next_line.md)
+For a comprehensive guide on the concept, I recommend consulting [@Raspurrin's 42Guides](https://github.com/Raspurrin/42Guides/blob/main/get_next_line/get_next_line.md), which provides valuable insights.
 
-I used a different implementation idea with Intrusive Linked List. Although it is not required but it helped me learn how to implement linked list.
-(Its not about showing off though -->> Just was fedup with the previous implementation where I had timeouts  _-_
+## Implementation Approach
 
-## **A small visual of the concept:** ##
+I adopted a unique implementation approach using an Intrusive Linked List. While this methodology is not obligatory, it proved instrumental in expanding my understanding of linked list implementations. The decision was not driven by showcasing prowess but rather stemmed from overcoming challenges faced in a prior implementation, where timeouts were prevalent.
 
-<img width="1891" alt="image" src="https://user-images.githubusercontent.com/66947064/183244165-8375f657-5c85-4c64-98e2-47e206932e70.png">
+## Visual Representation of the Concept
 
-## Intrusive Link List: 
+![Concept Visual](https://user-images.githubusercontent.com/66947064/183244165-8375f657-5c85-4c64-98e2-47e206932e70.png)
 
-<img width="770" alt="image" src="https://user-images.githubusercontent.com/66947064/183244206-088c95b7-cccd-4488-ac0b-54adceb879b1.png">
+## Intrusive Linked List
 
-## Advantages of Array Approach in this case :
+![Intrusive Linked List](https://user-images.githubusercontent.com/66947064/183244206-088c95b7-cccd-4488-ac0b-54adceb879b1.png)
 
-<img width="734" alt="image" src="https://user-images.githubusercontent.com/66947064/183244646-b5e47b3f-01c0-4cea-9ad6-37642b9e6f7f.png">
+## Advantages of Array Approach
 
- For more detailed idea.. Look into this: [Data Structure the lord](https://www.data-structures-in-practice.com/intrusive-linked-lists/)
- 
- 
- 
- One more thing : This is also faster. Have to do a benchmark test though. If anybody knows that please do and let me know ? 
+![Array Approach Advantages](https://user-images.githubusercontent.com/66947064/183244646-b5e47b3f-01c0-4cea-9ad6-37642b9e6f7f.png)
 
+For a more detailed understanding, refer to [Data Structure the lord](https://www.data-structures-in-practice.com/intrusive-linked-lists/).
 
-##Things/tools/resources I used while doing this : 
+## Performance Considerations
 
-- **Debugging ( Use lldb or usual gdb)**
-    Resource Link: A great resource from a fellow 42 Student from another campus(this gem was found in the slack 42 Channel. Its a gem of resources and         peer learning. Use it wisely :
-    
-   [Debug Me !!](https://sebastienwae.github.io/debugging-42/) `
+I propose that this implementation is potentially faster, although a benchmark test is warranted. I invite anyone knowledgeable in this area to conduct such tests and share the findings.
 
-- **Intutive sense about Memory Allocation** (still learning) - Malloc or Calloc -->> 
-    [Stackoverflow !!](https://stackoverflow.com/questions/1538420/difference-between-malloc-and-calloc)
+## Resources and Tools Used
 
-- Static Variables and Allocating large memory to it .. :xD (You get Timeout( !!! )  -->:xD)
-    _<details><summary> **Why allocating large memory in the stack with static variable not worth it ?** </summary><p>  
- _If you are allocating a big chunk of memory as a static variable inside a function, that memory will be allocated to your software until you exit from it.  It is completely valid to do so if you are actively using that memory, like get_next_line. But if you are not using the memory you allocated, then your software will misuse the resources. I know that Mac will recognises this misuse and simply swap your memory usage to the hard drive, which causes your software to slow down._                       ----- @Ali, Fellow Peer from 42 Wolfsburg  
- </p>
-</details>
+- **Debugging:** Utilized tools such as lldb or gdb. A valuable resource for debugging techniques can be found at [Debug Me !!](https://sebastienwae.github.io/debugging-42/).
 
--->> Last but not least : Learn from Evaluations -- <<<<
+- **Memory Allocation Intuition:** Continued learning and reference from [Stack Overflow](https://stackoverflow.com/questions/1538420/difference-between-malloc-and-calloc).
 
-   
+- **Static Variables and Memory Allocation:** Acknowledged the potential pitfalls of allocating large memory in the stack with static variables, especially in the context of avoiding timeouts.
+
+Finally, a crucial aspect of my learning process involved deriving insights from evaluations. Continuous improvement is paramount in refining programming skills.
